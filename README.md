@@ -1,2 +1,2 @@
-# OfficeWorkStation - OWS
+# OfficeWorkStation
 Офісна робоча станція (**ОРС - OfficeWorkStation, OWS**) - офісний пакет програм і сервісів в розпреділеній базі даних на відкритих веб технологіях.
