@@ -14,7 +14,8 @@
 Демо строчних та стовбчастих функції на прикладі [Транспортно-заготівельних витрат](http://jast002.algoritmed.com/f/c/11/eh004.html?doc2doc=369426,369343&views=doc)
 
 ## Текстовий редактор
-Зміст [Документ в ОРС](https://github.com/am-tasclin/officeworkstation/blob/master/README.md#документ) в шаблон [Microsoft Word](https://uk.wikipedia.org/wiki/Microsoft_Word) документа з використанням програмних бібліотек [Apache POI](https://en.wikipedia.org/wiki/Apache_POI).
+Розширений редактор HTML сторінки з можливістью поєднання ОРС документа форми з ОРС документом змісту.
+Зміст [документа ОРС](https://github.com/am-tasclin/officeworkstation/blob/master/README.md#документ) переноситься в шаблон [Microsoft Word](https://uk.wikipedia.org/wiki/Microsoft_Word) документа з використанням програмних бібліотек [Apache POI](https://en.wikipedia.org/wiki/Apache_POI) з метою друку, створеня pdf документа або обміну з іншими системами.
 
 ## WIKI документ
 Вбудований редактор HTML сторінки з підтримкою 
