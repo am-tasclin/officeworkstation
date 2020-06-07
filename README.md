@@ -18,4 +18,4 @@
 Зміст [документа ОРС](https://github.com/am-tasclin/officeworkstation/blob/master/README.md#документ) переноситься в шаблон [Microsoft Word](https://uk.wikipedia.org/wiki/Microsoft_Word) документа з використанням програмних бібліотек [Apache POI](https://en.wikipedia.org/wiki/Apache_POI) з метою друку, створеня pdf документа або обміну з іншими системами.
 
 ## WIKI документ
-Вбудований редактор HTML сторінки з підтримкою 
+Вбудований редактор HTML сторінки з підтримкою строчного [Markdown](https://uk.wikipedia.org/wiki/Markdown) та HTML синтаксису. HTML шаблони та [AngularJS](https://uk.wikipedia.org/wiki/AngularJS) програмні бібліотеки додають динамічний контент. 
