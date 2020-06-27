@@ -3,6 +3,9 @@ package org.algoritmed.ows.poi;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,12 +17,24 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class ExcelRest {
-	
+	@PostMapping("/r/createExcel001")
+	public @ResponseBody
+	Map<String, Object> createSqlObject(
+			@RequestBody Map<String, Object> data
+			, HttpServletRequest request
+			, Principal principal
+	){
+		HashMap<String,Object>sqlObjResponse = new HashMap<String, Object>();
+		return sqlObjResponse;
+	}
+
+
 	@RequestMapping("/r/helloExcel")
 	public ResponseEntity<InputStreamResource> helloExcel() {
 		// https://poi.apache.org/components/spreadsheet/quick-guide.html#NewWorkbook
