@@ -1,19 +1,48 @@
 package org.algoritmed.ows.poi;
 
+import org.algoritmed.ows.amdb.Db1Rest;
 import org.apache.poi.xwpf.usermodel.*;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.Principal;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class WordRest {
+	protected static final Logger logger = LoggerFactory.getLogger(Db1Rest.class);
+
+	@PostMapping("/r/for_word")
+	public @ResponseBody Map<String, Object> url_sql_read_db1(
+			@RequestBody Map<String, Object> data
+			,HttpServletRequest request
+			,Principal principal
+		){
+		logger.info("\n--35---Post-- "
+				+ "/r/for_word"
+				+ " SQL = \n"+data.get("sql")
+//				+ "\n" + data
+				);
+		data.remove("sql");
+		return data;
+	}
+
+	
+	
 	@RequestMapping("/r/helloWord")
 	public ResponseEntity<InputStreamResource> helloWord() throws IOException{
 		ByteArrayInputStream etr;
