@@ -18,16 +18,26 @@ var initOWS001 = function($http) {
                     else{
                         for(let k =0; k<ctrl.eMap[371357].children[i].children[j].cnt_child; k++){
                             textData[textData.length+1] = ctrl.eMap[371357].children[i].children[j].children[k].value_1_22
-                            console.log(ctrl.eMap[371357].children[i].children[j].children[k].value_1_22)
+                            // console.log(ctrl.eMap[371357].children[i].children[j].children[k].value_1_22)
                         }
                     }
                 }
 	        }
 
 	    }
-       console.log("Result->" + textData)
+    //    console.log("Result->" + textData)
        var json = JSON.stringify(textData)
-       console.log(typeof json)
+	   var jO = {'k':textData}
+	   console.log(jO)
+	read_write.http.post('/r/createWord', jO)
+	.then(function(response){
+		// console.log(response.data)
+		var file = new Blob([response.data], {type:"application/msword"});
+		console.log(file)
+		var fileUrl = URL.createObjectURL(file)
+		console.log(fileUrl)
+		window.open(fileUrl)
+	})
 	}
 	read_write = new Read_write($http)
 

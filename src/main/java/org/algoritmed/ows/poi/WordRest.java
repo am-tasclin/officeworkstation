@@ -1,8 +1,26 @@
 package org.algoritmed.ows.poi;
 
-import jdk.nashorn.internal.objects.annotations.ScriptClass;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.algoritmed.ows.amdb.Db1Rest;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.Borders;
+import org.apache.poi.xwpf.usermodel.BreakClear;
+import org.apache.poi.xwpf.usermodel.BreakType;
+import org.apache.poi.xwpf.usermodel.LineSpacingRule;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.TextAlignment;
+import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
+import org.apache.poi.xwpf.usermodel.VerticalAlign;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +34,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.security.Principal;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 public class WordRest {
 	protected static final Logger logger = LoggerFactory.getLogger(Db1Rest.class);
@@ -35,24 +46,35 @@ public class WordRest {
 		){
 		logger.info("\n--35---Post-- "
 				+ "/r/for_word"
-				+ " SQL = \n"+data.get("sql")
-//				+ "\n" + data
+				+ "\n" + data
 				);
-		data.remove("sql");
+		data.put("Hello", "World!");
 		return data;
 	}
 
-	@RequestMapping("/r/createWord")
-	public ResponseEntity<InputStreamResource> createWord_JSON(String json)throws IOException{
+	@PostMapping("/r/createWord")
+	public ResponseEntity<InputStreamResource> createWord_JSON(
+			@RequestBody Map<String, Object> data
+			)throws IOException{
+		logger.info("\n--59---Post-- "
+				+ "\n" + data
+				);
+		List<String> dataK = (List) data.get("k");
+		logger.info("\n--63---Post-- "
+				+ "\n" + dataK
+				);
 		ByteArrayInputStream etr;
 		try(XWPFDocument doc = new XWPFDocument()){
 			XWPFParagraph paragraph = doc.createParagraph();
 			XWPFRun run = paragraph.createRun();
-			String []jsonArray = json.split(",");
-
-			for(int i=0;i<json.length();i++){
-				run.setText(jsonArray[i] + "\n");
+//			String []jsonArray = json.split(",");
+			for (String paragrafS : dataK) {
+				run.setText(paragrafS + "\n");
 			}
+
+//			for(int i=0;i<d.length();i++){
+//				run.setText(jsonArray[i] + "\n");
+//			}
 
 			etr = extracted2in(doc);
 
@@ -167,6 +189,7 @@ public class WordRest {
 
 			etr = extracted2in(doc);
 
+			
 			//            try (FileOutputStream out = new FileOutputStream("helloWord.docx")) {
 			//                doc.write(out);
 			//            } catch (FileNotFoundException e) {
