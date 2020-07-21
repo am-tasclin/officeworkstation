@@ -1,5 +1,6 @@
 package org.algoritmed.ows.poi;
 
+import jdk.nashorn.internal.objects.annotations.ScriptClass;
 import org.algoritmed.ows.amdb.Db1Rest;
 import org.apache.poi.xwpf.usermodel.*;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
@@ -39,6 +40,33 @@ public class WordRest {
 				);
 		data.remove("sql");
 		return data;
+	}
+
+	@RequestMapping("/r/createWord")
+	public ResponseEntity<InputStreamResource> createWord_JSON(String json)throws IOException{
+		ByteArrayInputStream etr;
+		try(XWPFDocument doc = new XWPFDocument()){
+			XWPFParagraph paragraph = doc.createParagraph();
+			XWPFRun run = paragraph.createRun();
+			String []jsonArray = json.split(",");
+
+			for(int i=0;i<json.length();i++){
+				run.setText(jsonArray[i] + "\n");
+			}
+
+			etr = extracted2in(doc);
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Disposition", "attachment; filename=WikiTechnology.docx");
+			MediaType mediaType = MediaType.parseMediaType("application/msword");
+
+			return ResponseEntity
+					.ok()
+					.headers(headers)
+					.contentType(mediaType)
+					.body(new InputStreamResource(etr));
+
+		}
 	}
 
 	
