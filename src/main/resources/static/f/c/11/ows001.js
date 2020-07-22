@@ -29,14 +29,15 @@ var initOWS001 = function($http) {
        var json = JSON.stringify(textData)
 	   var jO = {'k':textData}
 	   console.log(jO)
+
 	read_write.http.post('/r/createWord', jO)
 	.then(function(response){
-		// console.log(response.data)
-		var file = new Blob([response.data], {type:"application/msword"});
-		console.log(file)
+		var file = new Blob([response], {type:"application/msword"});
 		var fileUrl = URL.createObjectURL(file)
 		console.log(fileUrl)
-		window.open(fileUrl)
+		var anchor = document.createElement("a");
+		anchor.href = fileUrl;
+		anchor.click();
 	})
 	}
 	read_write = new Read_write($http)
