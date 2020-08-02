@@ -355,6 +355,7 @@ var initDataModel = function(){
 		cell.value_1_edit = cell.value_1_edit_date.toISOString()
 		ctrl.field_name_save(cell, function(){ input_cell_recalc(cell) })
 	}
+
 	ctrl.inputBlurTS = function(cell, hm){
 		if('hour'==hm){
 			cell.value_1_edit_date.setHours(cell.value_1_edit_hour)
