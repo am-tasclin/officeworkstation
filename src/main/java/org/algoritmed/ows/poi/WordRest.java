@@ -92,7 +92,27 @@ public class WordRest {
 	}
 
 	
-	
+	@RequestMapping("/r/helloWord2")
+	public ResponseEntity<InputStreamResource> helloWord2() throws IOException{
+
+		ByteArrayInputStream etr;
+		try (XWPFDocument doc = new XWPFDocument()) {
+
+			XWPFParagraph p1 = doc.createParagraph();
+			XWPFRun r1 = p1.createRun();
+			r1.setText("The quick brown fox");
+			etr = extracted2in(doc);
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=helloWord.docx");
+		MediaType mediaType = MediaType.parseMediaType("application/msword");
+		return ResponseEntity
+				.ok()
+				.headers(headers)
+				.contentType(mediaType)
+				.body(new InputStreamResource(etr));
+	}
+
 	@RequestMapping("/r/helloWord")
 	public ResponseEntity<InputStreamResource> helloWord() throws IOException{
 		ByteArrayInputStream etr;
