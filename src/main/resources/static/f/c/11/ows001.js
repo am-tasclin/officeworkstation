@@ -32,12 +32,21 @@ var initOWS001 = function($http) {
 
 	read_write.http.post('/r/createWord', jO)
 	.then(function(response){
-		var file = new Blob([response], {type:"application/msword"});
-		var fileUrl = URL.createObjectURL(file)
-		console.log(fileUrl)
-		var anchor = document.createElement("a");
-		anchor.href = fileUrl;
-		anchor.click();
+		let link,blob,url;
+		
+		blob = new Blob(['\ufeff',response.config.data.k], {type:"application/msword"});
+		url = URL.createObjectURL(blob)
+		console.log(url)
+
+		link = document.createElement("A");
+		link.href = url;
+		link.title = "Download title"
+		link.download = "document"
+		
+		if(navigator.msSaveOrOpenBlob)
+			msSaveOrOpenBlob(blob,"Herrlich.doc")
+		else link.click()
+		
 	})
 	}
 	read_write = new Read_write($http)

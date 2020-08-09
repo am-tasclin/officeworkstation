@@ -59,7 +59,7 @@ public class WordRest {
 		logger.info("\n--59---Post-- "
 				+ "\n" + data
 				);
-		List<String> dataK = (List) data.get("k");
+		List<String> dataK = (List<String>) data.get("k");
 		logger.info("\n--63---Post-- "
 				+ "\n" + dataK
 				);
@@ -78,7 +78,8 @@ public class WordRest {
 
 			etr = extracted2in(doc);
 
-			HttpHeaders headers = new HttpHeaders();
+		}
+		HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Disposition", "attachment; filename=WikiTechnology.docx");
 			MediaType mediaType = MediaType.parseMediaType("application/msword");
 
@@ -87,8 +88,6 @@ public class WordRest {
 					.headers(headers)
 					.contentType(mediaType)
 					.body(new InputStreamResource(etr));
-
-		}
 	}
 
 	
