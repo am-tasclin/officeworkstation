@@ -3,7 +3,6 @@ package org.algoritmed.ows.poi;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +27,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +48,7 @@ public class WordRest {
 				+ "/r/for_word"
 				+ "\n" + data
 				);
+				request.getSession().setAttribute("x", 1);
 		data.put("Hello", "World!");
 		return data;
 	}
@@ -91,8 +92,32 @@ public class WordRest {
 	}
 
 	
-	@RequestMapping("/r/helloWord2")
+	@PostMapping("/r/helloWord2")
 	public ResponseEntity<InputStreamResource> helloWord2() throws IOException{
+
+		ByteArrayInputStream etr;
+		try (XWPFDocument doc = new XWPFDocument()) {
+
+			XWPFParagraph p1 = doc.createParagraph();
+			XWPFRun r1 = p1.createRun();
+			r1.setText("The quick brown fox");
+			etr = extracted2in(doc);
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=helloWord.docx");
+		MediaType mediaType = MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE);// application/octet-stream
+		// MediaType mediaType = MediaType.parseMediaType("application/msword");
+		
+		return ResponseEntity
+				.ok()
+				.headers(headers)
+				.contentType(mediaType)
+				.body(new InputStreamResource(etr));
+				
+	}
+
+	@GetMapping("/r/helloWord3")
+	public ResponseEntity<InputStreamResource> helloWord3() throws IOException{
 
 		ByteArrayInputStream etr;
 		try (XWPFDocument doc = new XWPFDocument()) {
