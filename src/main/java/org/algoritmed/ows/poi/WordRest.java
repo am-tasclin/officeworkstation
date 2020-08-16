@@ -100,7 +100,8 @@ public class WordRest {
 
 			XWPFParagraph p1 = doc.createParagraph();
 			XWPFRun r1 = p1.createRun();
-			r1.setText("The quick brown fox");
+			r1.setText("The quick brown fox and lazy cat");
+			System.out.println("System has been started with number 2 !!!\n\n\n\n\n");
 			etr = extracted2in(doc);
 		}
 		HttpHeaders headers = new HttpHeaders();
@@ -124,7 +125,7 @@ public class WordRest {
 
 			XWPFParagraph p1 = doc.createParagraph();
 			XWPFRun r1 = p1.createRun();
-			r1.setText("The quick brown fox");
+			r1.setText("The quick brown fox and lazy dog");
 			etr = extracted2in(doc);
 		}
 		HttpHeaders headers = new HttpHeaders();
