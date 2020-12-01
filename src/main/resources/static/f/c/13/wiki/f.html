@@ -1,0 +1,16 @@
+<div id="wikiHTML" data-ng-repeat="file in [ctrl.eMap[ctrl.doc2doc_ids[1]]]" data-ng-init="el=file">
+	<div class="w3-tiny w3-right">
+		WYSIWYG <span data-ng-repeat="ddEl in [file]" data-ng-include="'/f/c/13/mc_window_icon.html'"></span>
+	</div>
+	<div class="w3-light-gray">
+		<i class="fab fa-wikipedia-w"></i> create Word <i class="far fa-file-word w3-btn w3-ripple"
+			data-ng-click="ctrl.ows001.createWord2()"></i>
+		<a href="/r/helloWord4">
+			<i class="far fa-file-word w3-btn w3-ripple w3-green"></i>
+		</a>
+	</div>
+	<div class="w3-small1">
+		<h1 class="w3-border-bottom">{{file.value_1_22}}</h1>
+		<div data-ng-if="el.children" data-ng-include="'/f/c/13/wiki/children.html'"></div>
+	</div>
+</div>

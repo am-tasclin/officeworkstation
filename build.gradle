@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'org.springframework.boot' version '2.3.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
@@ -20,7 +20,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'org.postgresql:postgresql'
-	runtimeOnly 'org.webjars:angularjs:1.7.9'
+	runtimeOnly 'org.webjars:angularjs:1.8.0'
 	runtimeOnly 'org.webjars:font-awesome:5.12.0'
 
 	compile 'org.apache.poi:poi:4.1.2'
