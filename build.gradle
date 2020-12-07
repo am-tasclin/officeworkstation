@@ -25,6 +25,14 @@ dependencies {
 
 	compile 'org.apache.poi:poi:4.1.2'
 	compile 'org.apache.poi:poi-ooxml:4.1.2'
+
+	
+	compile group: 'com.vladsch.flexmark', name: 'flexmark-all', version: '0.62.2'
+	compile group: 'com.vladsch.flexmark', name: 'flexmark-docx-converter', version: '0.62.2'
+
+	compile group: 'org.docx4j', name: 'docx4j-core', version: '8.1.6'
+	compile group: 'org.docx4j', name: 'docx4j-JAXB-Internal', version: '8.1.6'
+	compile group: 'org.docx4j', name: 'docx4j-JAXB-ReferenceImpl', version: '8.1.6'
 	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

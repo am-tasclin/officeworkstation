@@ -16,7 +16,6 @@ var initOWS001 = function ($http) {
 	  ctrl.getMarkdownFromHTML=function(){
 		var markdown = turndownService.turndown(document.getElementById('wikiHTML'));
 		console.log(markdown);
-		
 	}
 	///
 	
