@@ -105,20 +105,21 @@ public class RestControllerAPI {
         }
 
         Docx4J.toPDF(tmp, out);
-        body = extracted2in(tmp, out);
+
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=" + dispositionFileName);
         MediaType mediaType = MediaType.parseMediaType("application/pdf");
-        return ResponseEntity.ok().headers(headers).contentType(mediaType).body(new InputStreamResource(body));
+        return ResponseEntity.ok().headers(headers).contentType(mediaType)
+                .body(new InputStreamResource(new ByteArrayInputStream(out.toByteArray())));
     }
 
     private ByteArrayInputStream extracted2in(WordprocessingMLPackage template, ByteArrayOutputStream out)
             throws Docx4JException {
-        // try {
-        // // template.save(out, Docx4J.FLAG_SAVE_ZIP_FILE);
-        // } catch (Docx4JException e) {
-        // e.printStackTrace();
-        // }
+        try {
+            template.save(out, Docx4J.FLAG_SAVE_ZIP_FILE);
+        } catch (Docx4JException e) {
+            e.printStackTrace();
+        }
         return new ByteArrayInputStream(out.toByteArray());
     }
 }
